@@ -14,7 +14,7 @@ public class StudentView {
         sc = new Scanner(System.in);
         contoroller = new StudentContoroller();
     }
-
+    // View of Main
     public void viewMenu() {
         System.out.println("< 학생 성적 관리 >");
         System.out.println("1. 학생 등록");
@@ -26,7 +26,7 @@ public class StudentView {
         System.out.println("--------------------");
         System.out.print("선택 > ");
     }
-
+    // Selection of menu
     public void selectMenu(String selectedMenu) {
         switch (selectedMenu) {
             case "1":
@@ -52,7 +52,7 @@ public class StudentView {
         }
     }
 
-    // 학생 등록
+    // View of the student registration menu
     private void viewCreateStudent() {
         this.contoroller.setStudent(new Student());
         System.out.println("< 학생 등록 >");
@@ -75,7 +75,7 @@ public class StudentView {
         System.out.println("학생 등록 성공");
     }
 
-    // 학생 정보 조회(1명)
+    // View of information for one student
     private void viewSelectStudent() {
         this.contoroller.setStudent(new Student());
         System.out.println("< 학생 정보 조회(1명) >");
@@ -94,7 +94,7 @@ public class StudentView {
         System.out.println(this.contoroller.selectStudent(this.contoroller.getStudent().getId()));
     }
 
-    // 학생 전체 조회
+    // View of all student information
     private void viewSelectAll() {
         System.out.println("< 학생 전체 조회 >");
         if (contoroller.selectAll().isEmpty()) {
@@ -107,7 +107,7 @@ public class StudentView {
         }
     }
 
-    // 학생 성적 수정
+    // View of update student information
     private void viewUpdateStudent() {
         this.contoroller.setStudent(new Student());
         System.out.println("< 학생 성적 수정 >");
@@ -139,7 +139,7 @@ public class StudentView {
         System.out.println("회원 정보 수정 완료");
     }
 
-    // 학생 전학
+    // View of student transfers
     private void viewDeleteStudent() {
         this.contoroller.setStudent(new Student());
         System.out.println("< 학생 전학 >");
@@ -168,7 +168,7 @@ public class StudentView {
             System.out.println("전학 처리가 취소 되었습니다.");
         }
     }
-
+    // Getters & Setters
     public Scanner getSc() {
         return sc;
     }
