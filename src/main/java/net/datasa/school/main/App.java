@@ -9,7 +9,7 @@ public class App {
         try {
             while (true) {
                 view.viewMenu();
-                view.selectMenu(view.getSc().next());
+                view.selectMenu(view.getScanner().next());
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

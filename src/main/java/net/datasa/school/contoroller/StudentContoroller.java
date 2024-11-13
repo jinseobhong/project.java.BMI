@@ -8,7 +8,7 @@ import net.datasa.school.model.Student;
 public class StudentContoroller {
     List<Student> students = new ArrayList<>();
     private Student student;
-    private static int primaryKey = 100;
+    private static Integer primaryKey = 100;
 
     public StudentContoroller() {
         this.students = new ArrayList<Student>();
@@ -16,11 +16,11 @@ public class StudentContoroller {
 
     // Create Student
     public void createStudent(Student student) {
-        students.add(student);
+        this.getStudents().add(student);
     }
 
     // Select one Student
-    public Student selectStudent(int id) {
+    public Student selectStudent(Integer id) {
         for (Student s : this.getStudents()) {
             if (id == s.getId()) {
                 return s;
@@ -35,15 +35,14 @@ public class StudentContoroller {
     }
 
     // Update Student
-    public void updateStudent(Integer id, String name, int kor, int eng, int math) {
-        for (Student student : this.students) {
+    public void updateStudent(Integer id, String name, Integer[] scores) {
+        for (Student student : this.getStudents()) {
             if (student.getId() == id) {
                 student.setName(name);
-                student.setKor(kor);
-                student.setEng(eng);
-                student.setTotal(kor, eng, math);
+                student.setScores(scores);
+                student.setTotal(student.getScores());
                 student.setAvg();
-                this.students.set(student.getId(), student);
+                this.getStudents().set(student.getId(), student);
             }
         }
     }
@@ -63,18 +62,18 @@ public class StudentContoroller {
     }
 
     public Student getStudent() {
-        return student;
+        return this.student;
     }
 
     public void setStudent(Student student) {
         this.student = student;
     }
 
-    public static int getPrimaryKey() {
+    public Integer getPrimaryKey() {
         return ++primaryKey;
     }
 
-    public static void setPrimaryKey(int primaryKey) {
+    public void setPrimaryKey(int primaryKey) {
         StudentContoroller.primaryKey = primaryKey;
     }
 }

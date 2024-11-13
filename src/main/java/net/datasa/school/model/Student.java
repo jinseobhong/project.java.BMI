@@ -1,19 +1,21 @@
 package net.datasa.school.model;
 
+import java.util.ArrayList;
+
 public class Student {
     // Field member
-    private int id;
+    private Integer id;
     private String name;
-    private int total;
-    private double avg;
+    private Integer total;
+    private Double avg;
 
-    private enum Subjects {
+    public enum Subject {
         Korean, English, Math;
 
         private Integer score;
 
         public Integer getScore() {
-            return score;
+            return this.score;
         }
 
         public void setScore(Integer score) {
@@ -22,36 +24,47 @@ public class Student {
     }
 
     public Student() {
-        super();
+        this.total = 0;
     }
 
-    public Student(int id, String name, int kor, int eng, int math) {
+    public Student(Integer id) {
+        this.id = id;
+        this.total = 0;
+    }
+
+    public Student(Integer id, String name, Integer[] scores) {
         this.id = id;
         this.name = name;
-        Subjects.Korean.setScore(kor);
-        Subjects.English.setScore(eng);
-        Subjects.Math.setScore(math);
-        this.setTotal(kor, eng, math);
+        this.setScores(scores);
+        this.setTotal(this.getScores());
         this.setAvg();
     }
 
+    public void setScores(Integer[] scores) {
+        for (Subject s : Student.Subject.values()) {
+            Student.Subject.valueOf(s.name()).setScore(scores[s.ordinal()]);
+        }
+    }
+
     // Total of all subjects
-    public void setTotal(int kor, int eng, int math) {
-        this.total = kor + eng + math;
+    public void setTotal(Integer[] scores) {
+        for (Subject s : Student.Subject.values()) {
+            this.total = this.total + Student.Subject.valueOf(s.name()).getScore();
+        }
     }
 
     // Calculate the average of all subjects
     public void setAvg() {
-        this.avg = (double) this.getTotal() / Subjects.values().length;
+        this.avg = (double) this.getTotal() / Subject.values().length;
     }
-    
+
     // Getter, Setter
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getId() {
-        return id;
+    public Integer getId() {
+        return this.id;
     }
 
     public String getName() {
@@ -62,41 +75,33 @@ public class Student {
         this.name = name;
     }
 
-    public int getKor() {
-        return Subjects.Korean.getScore();
+    public Integer getScore(String subject) {
+        return Subject.valueOf(subject).getScore();
     }
 
-    public void setKor(int kor) {
-        Subjects.Korean.setScore(kor);
+    public void setScore(String subject, Integer score) {
+        Subject.valueOf(subject).setScore(score);
     }
 
-    public int getEng() {
-        return Subjects.English.getScore();
+    public Integer[] getScores() {
+        ArrayList<Integer> scores = new ArrayList<>();
+        for (Subject s : Student.Subject.values()) {
+            scores.add(Subject.valueOf(s.name()).getScore());
+        }
+        return scores.toArray(new Integer[Subject.values().length]);
     }
 
-    public void setEng(int eng) {
-        Subjects.English.setScore(eng);
+    public Integer getTotal() {
+        return this.total;
     }
 
-    public int getMath() {
-        return Subjects.Math.getScore();
-    }
-
-    public void setMath(int math) {
-        Subjects.Math.setScore(math);
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public double getAvg() {
-        return avg;
+    public Double getAvg() {
+        return this.avg;
     }
 
     // Redefinition of Object.toString()
     @Override
     public String toString() {
-        return String.format("학번 : %d 이름 : %s 국어 : %d 영어 : %d 총점: %d 평균 : %.2f", this.getId(), this.getName(), this.getKor(), this.getEng(), this.getTotal(), this.getAvg());
+        return String.format("학번 : %d 이름 : %s 국어 : %d 영어 : %d 수학 : %d 총점: %d 평균 : %.2f", this.getId(), this.getName(), this.getScore("Korean"), this.getScore("English"), this.getScore("Math"), this.getTotal(), this.getAvg());
     }
 }
