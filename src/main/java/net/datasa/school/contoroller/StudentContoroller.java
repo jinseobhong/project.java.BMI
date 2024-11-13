@@ -14,12 +14,12 @@ public class StudentContoroller {
         this.students = new ArrayList<Student>();
     }
 
-    // TODO : 학생 등록
+    // Create Student
     public void createStudent(Student student) {
         students.add(student);
     }
 
-    // TODO : 학생 정보 조회(1명)
+    // Select one Student
     public Student selectStudent(int id) {
         for (Student s : this.getStudents()) {
             if (id == s.getId()) {
@@ -29,12 +29,12 @@ public class StudentContoroller {
         return null;
     }
 
-    // TODO : 학생 전체 조회
+    // Select all Students
     public List<Student> selectAll() {
         return this.getStudents();
     }
 
-    // TODO : 학생 정보 수정
+    // Update Student
     public void updateStudent(Integer id, String name, int kor, int eng, int math) {
         for (Student student : this.students) {
             if (student.getId() == id) {
@@ -48,7 +48,7 @@ public class StudentContoroller {
         }
     }
 
-    // TODO : 학생 전학
+    // Delete Student
     public void deleteStudent(Student student) {
         this.getStudents().remove(student);
     }
