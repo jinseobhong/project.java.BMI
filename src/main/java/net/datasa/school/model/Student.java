@@ -1,7 +1,7 @@
 package net.datasa.school.model;
 
 public class Student {
-    // 멤버 변수(필드)
+    // Field member
     private int id;
     private String name;
     private int total;
@@ -35,21 +35,21 @@ public class Student {
         this.setAvg();
     }
 
-    // 3과목의 점수 합계
+    // Total of all subjects
     public void setTotal(int kor, int eng, int math) {
         this.total = kor + eng + math;
     }
 
-    // 3과목의 평균 계산
+    // Calculate the average of all subjects
     public void setAvg() {
         this.avg = (double) this.getTotal() / Subjects.values().length;
     }
-
+    
+    // Getter, Setter
     public void setId(int id) {
         this.id = id;
     }
 
-    // Getter, Setter
     public int getId() {
         return id;
     }
@@ -94,26 +94,9 @@ public class Student {
         return avg;
     }
 
-    //toString() 재정의
+    // Redefinition of Object.toString()
     @Override
     public String toString() {
         return String.format("학번 : %d 이름 : %s 국어 : %d 영어 : %d 총점: %d 평균 : %.2f", this.getId(), this.getName(), this.getKor(), this.getEng(), this.getTotal(), this.getAvg());
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
