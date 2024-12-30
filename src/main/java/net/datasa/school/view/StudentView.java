@@ -17,15 +17,13 @@ public class StudentView {
 
     // View of Main
     public void viewMenu() {
-        System.out.println("< 학생 성적 관리 >");
-        System.out.println("1. 학생 등록");
-        System.out.println("2. 학생 정보 조회(1명)");
-        System.out.println("3. 학생 전체 조회");
-        System.out.println("4. 학생 성적 수정");
-        System.out.println("5. 학생 전학");
-        System.out.println("0. 프로그램 종료");
-        System.out.println("--------------------");
-        System.out.print("선택 > ");
+        System.out.println("1. 학생 등록\n" +
+                "2. 학생 정보 조회(1명)\n" +
+                "3. 학생 전체 조회\n" +
+                "4. 학생 성적 수정\n" +
+                "5. 학생 전학\n" +
+                "0. 종료");
+        System.out.print("선택 : ");
     }
 
     // Selection of menu
@@ -57,7 +55,7 @@ public class StudentView {
     // View of the student registration menu
     private void viewCreateStudent() {
         this.getController().setStudent(new Student(this.getController().getPrimaryKey()));
-        System.out.println("< 학생 등록 >");
+        System.out.println("학생 등록");
         System.out.print("이름 : ");
         this.getController().getStudent().setName(this.getScanner().next());
         try {
@@ -82,7 +80,7 @@ public class StudentView {
     // View of information for one student
     private void viewSelectStudent() {
         this.getController().setStudent(new Student());
-        System.out.println("< 학생 정보 조회(1명) >");
+        System.out.println("학생 정보 조회(1명)");
         try {
             System.out.print("검색 할 학생의 ID :");
             this.getController().getStudent().setId(this.getScanner().nextInt());
@@ -101,7 +99,7 @@ public class StudentView {
 
     // View of all student information
     private void viewSelectAll() {
-        System.out.println("< 학생 전체 조회 >");
+        System.out.println("학생 전체 조회");
         if (this.getController().selectAll().isEmpty()) {
             System.out.println("학생이 존재하지 않습니다.");
             return;
@@ -115,7 +113,7 @@ public class StudentView {
     // View of update student information
     private void viewUpdateStudent() {
         this.getController().setStudent(new Student());
-        System.out.println("< 학생 성적 수정 >");
+        System.out.println("학생 성적 수정");
         try {
             System.out.print("> 수정할 학생의 ID:");
             this.getController().getStudent().setId(this.getScanner().nextInt());
@@ -149,7 +147,7 @@ public class StudentView {
     // View of student transfers
     private void viewDeleteStudent() {
         this.getController().setStudent(new Student());
-        System.out.println("< 학생 전학 >");
+        System.out.println("학생 전학");
         System.out.print("> 전학 시킬 회원의 ID : ");
         try {
             this.getController().getStudent().setId(this.getScanner().nextInt());
